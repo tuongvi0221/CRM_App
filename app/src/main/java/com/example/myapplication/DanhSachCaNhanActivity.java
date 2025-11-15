@@ -6,6 +6,9 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import android.widget.Button;
+import android.view.View;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
 
 
 public class DanhSachCaNhanActivity extends AppCompatActivity {
@@ -44,6 +47,14 @@ public class DanhSachCaNhanActivity extends AppCompatActivity {
 
         // Click vào back button
         icBack.setOnClickListener(v -> onBackPressed());
-        icMore.setOnClickListener(v -> onBackPressed());
+
+        icMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomActionFragment bottomSheet = new BottomActionFragment();
+                bottomSheet.show(getSupportFragmentManager(), "BottomAction");
+            }
+        });
+
     }
 }
