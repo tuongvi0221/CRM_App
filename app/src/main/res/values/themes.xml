@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme -->
+    <style name="Base.Theme.My_Application" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Bạn có thể tùy chỉnh màu chủ đạo ở đây -->
+        <!-- <item name="colorPrimary">@color/blue</item> -->
+    </style>
+
+    <style name="Theme.My_Application" parent="Base.Theme.My_Application" />
+</resources>
