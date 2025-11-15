@@ -1,4 +1,5 @@
 package com.example.myapplication;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.ImageView;
 import androidx.annotation.NonNull;
+import android.widget.Button;
+
+import android.widget.LinearLayout;
 import androidx.annotation.Nullable;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -16,27 +20,22 @@ public class BottomActionFragment extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.bottom_actions, container, false);
 
-        // Nút đóng (ic_cancel)
         ImageView icCancel = view.findViewById(R.id.ic_cancel);
-        icCancel.setOnClickListener(v -> dismiss()); // đóng Bottom Sheet
+        icCancel.setOnClickListener(v -> dismiss());
 
-        // Ví dụ click các nút khác
-        view.findViewById(R.id.ghim).setOnClickListener(v -> {
-            // Hành động Ghim
-            dismiss(); // đóng nếu muốn
-        });
-
-        view.findViewById(R.id.chinhsua).setOnClickListener(v -> {
-            // Hành động Chỉnh sửa
+        LinearLayout themHoatDong = view.findViewById(R.id.themhoatdong);
+        themHoatDong.setOnClickListener(v -> {
+            BottomHoatDongFragment bottomSheet = new BottomHoatDongFragment();
+            bottomSheet.show(getParentFragmentManager(), "BottomHoatDong");
             dismiss();
         });
 
-        view.findViewById(R.id.xoa).setOnClickListener(v -> {
-            // Hành động Xóa
-            dismiss();
-        });
+        view.findViewById(R.id.ghim).setOnClickListener(v -> dismiss());
+        view.findViewById(R.id.chinhsua).setOnClickListener(v -> dismiss());
+        view.findViewById(R.id.xoa).setOnClickListener(v -> dismiss());
 
         return view;
     }
