@@ -27,17 +27,25 @@ public class DanhSachCaNhanActivity extends AppCompatActivity {
         rvCaNhan = findViewById(R.id.rvCaNhan);
         btnAdd = findViewById(R.id.btn_add_contact);
 
+        // ====== Tạo danh sách ======
         caNhanList = new ArrayList<>();
-        adapter = new CaNhanAdapter(caNhanList);
 
+        // 3 item cố định
+        caNhanList.add(new CaNhan("Nguyễn Văn A", "Công ty X", "01/01/2025", 2, 2));
+        caNhanList.add(new CaNhan("Trần Thị B", "Công ty Y", "02/01/2025", 2, 2));
+        caNhanList.add(new CaNhan("Lê Văn C", "Công ty Z", "03/01/2025", 2, 2));
+
+        adapter = new CaNhanAdapter(caNhanList);
         rvCaNhan.setLayoutManager(new LinearLayoutManager(this));
         rvCaNhan.setAdapter(adapter);
 
+        // ====== Nút thêm ======
         btnAdd.setOnClickListener(v -> {
             Intent intent = new Intent(DanhSachCaNhanActivity.this, ThongTinLienHeActivity.class);
             startActivityForResult(intent, 100);
         });
 
+        // ====== Click item ======
         adapter.setOnItemClickListener(new CaNhanAdapter.OnItemClickListener() {
             @Override
             public void onMoreClick(CaNhan cn) {
@@ -73,6 +81,7 @@ public class DanhSachCaNhanActivity extends AppCompatActivity {
             cn.setSoCuocGoi(2);
             cn.setSoMeeting(2);
 
+            // Thêm item mới vào cuối danh sách
             adapter.addItem(cn);
             rvCaNhan.scrollToPosition(caNhanList.size() - 1); // cuộn xuống item mới
         }
