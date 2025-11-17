@@ -69,6 +69,7 @@ public class BottomHoatDongFragment extends BottomSheetDialogFragment {
         // Tab được chọn: nền xanh, icon trắng
         selectedTab.setBackgroundResource(R.drawable.rounded_input_box_selected);
         selectedTab.setColorFilter(getResources().getColor(R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
+
     }
 
 
