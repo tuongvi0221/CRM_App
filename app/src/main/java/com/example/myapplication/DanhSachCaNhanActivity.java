@@ -8,14 +8,15 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.widget.Button;
 import android.view.View;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class DanhSachCaNhanActivity extends AppCompatActivity {
 
     private ImageView icBack;
     private ImageView icMore;
-    private Button btnAdd;
+    private FloatingActionButton btn_add_contact;
+
     private ConstraintLayout cardThongTin;
 
     @Override
@@ -27,34 +28,27 @@ public class DanhSachCaNhanActivity extends AppCompatActivity {
         cardThongTin = findViewById(R.id.cardthongtin);
         icBack = findViewById(R.id.ic_back);
         icMore = findViewById(R.id.ic_more);
-        btnAdd = findViewById(R.id.btnAdd);
+        btn_add_contact = findViewById(R.id.btn_add_contact); // <- thêm dòng này
 
+        icBack.setOnClickListener(v -> {
+            Intent intent = new Intent(DanhSachCaNhanActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
 
-        // Click vào card mở TabActivity
         cardThongTin.setOnClickListener(v -> {
             Intent intent = new Intent(DanhSachCaNhanActivity.this, TabActivity.class);
             startActivity(intent);
-            // Nếu muốn giữ lại màn hình danh sách, bỏ dòng finish()
-            //finish();
         });
 
-        btnAdd.setOnClickListener(v -> {
+        btn_add_contact.setOnClickListener(v -> {
             Intent intent = new Intent(DanhSachCaNhanActivity.this, ThongTinLienHeActivity.class);
             startActivity(intent);
-            // Nếu muốn giữ lại màn hình danh sách, bỏ dòng finish()
-            //finish();
         });
 
-        // Click vào back button
-        icBack.setOnClickListener(v -> onBackPressed());
-
-        icMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                BottomActionFragment bottomSheet = new BottomActionFragment();
-                bottomSheet.show(getSupportFragmentManager(), "BottomAction");
-            }
+        icMore.setOnClickListener(v -> {
+            BottomActionFragment bottomSheet = new BottomActionFragment();
+            bottomSheet.show(getSupportFragmentManager(), "BottomAction");
         });
-
     }
+
 }

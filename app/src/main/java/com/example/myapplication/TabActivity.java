@@ -2,8 +2,8 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -13,11 +13,6 @@ public class TabActivity extends AppCompatActivity {
 
     private TextView tabTongQuan, tabChiTiet, tabHoatDong, tabCoHoi;
     private ImageView icBack;
-    private ImageView icLeft;
-    private ImageView icRight;
-    private ImageView icEdit;
-    private ImageView icMore;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,15 +24,7 @@ public class TabActivity extends AppCompatActivity {
         tabChiTiet = findViewById(R.id.tab_chitiet);
         tabHoatDong = findViewById(R.id.tab_hoatdong);
         tabCoHoi = findViewById(R.id.tab_cohoi);
-
-        icLeft = findViewById(R.id.ic_left);
-        icRight = findViewById(R.id.ic_right);
-        icEdit = findViewById(R.id.ic_edit);
-        icMore = findViewById(R.id.ic_more);
         icBack = findViewById(R.id.ic_back);
-
-
-
         // --- Mặc định hiển thị tab Tổng quan ---
         setFragment(new TongQuanFragment());
         setActiveTab(tabTongQuan);
@@ -53,6 +40,12 @@ public class TabActivity extends AppCompatActivity {
             setActiveTab(tabChiTiet);
         });
 
+        icBack.setOnClickListener(v -> {
+            Intent intent = new Intent(TabActivity.this, DanhSachCaNhanActivity.class);
+            startActivity(intent);
+            // Nếu muốn giữ lại màn hình danh sách, bỏ dòng finish()
+            //finish();
+        });
 //        tabHoatDong.setOnClickListener(v -> {
 //            setFragment(new HoatDongFragment());
 //            setActiveTab(tabHoatDong);
@@ -62,14 +55,6 @@ public class TabActivity extends AppCompatActivity {
 //            setFragment(new CoHoiFragment());
 //            setActiveTab(tabCoHoi);
 //        });
-
-
-        icBack.setOnClickListener(v -> {
-            Intent intent = new Intent(TabActivity.this, DanhSachCaNhanActivity.class);
-            startActivity(intent);
-            // Nếu muốn giữ lại màn hình danh sách, bỏ dòng finish()
-            //finish();
-        });
     }
 
     /**
@@ -100,6 +85,6 @@ public class TabActivity extends AppCompatActivity {
 
         // Tab được chọn hiển thị màu xanh + viền dưới
         selectedTab.setTextColor(getResources().getColor(R.color.blue));
-        selectedTab.setBackgroundResource(R.drawable.edittext_line); // ✅ Dòng bạn muốn thêm
+        selectedTab.setBackgroundResource(R.drawable.edittext_line);
     }
 }
