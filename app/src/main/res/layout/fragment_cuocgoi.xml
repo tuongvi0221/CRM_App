@@ -43,7 +43,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:tint="@color/black"
-                    android:src="@drawable/ic_arrow_drop_down"
+                    android:src="@drawable/ic_arrow_down"
                     android:layout_marginStart="@dimen/margin_base"/>
             </LinearLayout>
 
@@ -140,7 +140,7 @@
                     android:id="@+id/ic_arrow_customer"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/ic_arrow_drop_down"
+                    android:src="@drawable/ic_arrow_down"
                     android:layout_marginStart="@dimen/margin_base"/>
             </LinearLayout>
 
@@ -247,7 +247,7 @@
                     android:id="@+id/ic_arrow_opportunity"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/ic_arrow_drop_down"
+                    android:src="@drawable/ic_arrow_down"
                     android:layout_marginStart="@dimen/margin_base"/>
             </LinearLayout>
 
