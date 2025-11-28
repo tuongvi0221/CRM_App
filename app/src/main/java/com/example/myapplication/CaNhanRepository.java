@@ -10,14 +10,14 @@ import java.util.List;
 
 public class CaNhanRepository {
 
-    private DBCRMHandler dbHelper;
+    private DBCRMHandler dbHandler;
 
     public CaNhanRepository(Context context) {
-        dbHelper = new DBCRMHandler(context);
+        dbHandler = new DBCRMHandler(context);
     }
 
     public void add(CaNhan cn) {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        SQLiteDatabase db = dbHandler.getWritableDatabase();
         ContentValues values = new ContentValues();
 
         values.put("HOTEN", cn.getHoVaTen());
@@ -45,7 +45,7 @@ public class CaNhanRepository {
 
     public List<CaNhan> getAllCaNhan() {
         List<CaNhan> list = new ArrayList<>();
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        SQLiteDatabase db = dbHandler.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM CONTACT", null);
 
         if (cursor.moveToFirst()) {
@@ -80,13 +80,13 @@ public class CaNhanRepository {
     }
 
     public void delete(int id) {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        SQLiteDatabase db = dbHandler.getWritableDatabase();
         db.delete("CONTACT", "ID=?", new String[]{String.valueOf(id)});
         db.close();
     }
 
     public int update(CaNhan cn) {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        SQLiteDatabase db = dbHandler.getWritableDatabase();
         ContentValues values = new ContentValues();
 
         values.put("HOTEN", cn.getHoVaTen());
