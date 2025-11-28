@@ -15,15 +15,13 @@ import java.util.List;
 import java.util.Locale;
 import android.widget.ImageView;
 
-
 public class DanhSachCaNhanActivity extends AppCompatActivity {
-    private ImageView icBack;
 
+    private ImageView icBack;
     private RecyclerView rvCaNhan;
     private CaNhanAdapter adapter;
     private ArrayList<CaNhan> caNhanList;
     private FloatingActionButton btnAdd;
-
     private CaNhanRepository db;
 
     @Override
@@ -33,6 +31,7 @@ public class DanhSachCaNhanActivity extends AppCompatActivity {
 
         rvCaNhan = findViewById(R.id.rvCaNhan);
         btnAdd = findViewById(R.id.btn_add_contact);
+        icBack = findViewById(R.id.ic_back);
 
         // --- Khởi tạo DB ---
         db = new CaNhanRepository(this);
@@ -51,16 +50,41 @@ public class DanhSachCaNhanActivity extends AppCompatActivity {
             startActivityForResult(intent, 100);
         });
 
-        icBack = findViewById(R.id.ic_back); // phải bind view trước
-        icBack.setOnClickListener(v -> {
-            onBackPressed(); // quay lại Activity trước
-        });
+        // --- Nút back ---
+        icBack.setOnClickListener(v -> onBackPressed());
 
-
+        // --- Xử lý sự kiện click item ---
         adapter.setOnItemClickListener(new CaNhanAdapter.OnItemClickListener() {
             @Override
             public void onMoreClick(CaNhan cn) {
+                // Tạo BottomActionFragment và truyền item + callback
                 BottomActionFragment bottomSheet = new BottomActionFragment();
+                bottomSheet.setCaNhan(cn, new BottomActionFragment.OnActionListener() {
+                    @Override
+                    public void onDelete(CaNhan deletedCn) {
+                        // Xóa khỏi database
+                        db.delete(deletedCn.getId());
+
+                        // Xóa khỏi danh sách local và cập nhật RecyclerView
+                        int index = caNhanList.indexOf(deletedCn);
+                        if (index != -1) {
+                            caNhanList.remove(index);
+                            adapter.notifyItemRemoved(index);
+                        }
+                    }
+
+                    @Override
+                    public void onEdit(CaNhan editCn) {
+                        // TODO: Mở Activity chỉnh sửa thông tin
+                    }
+
+                    @Override
+                    public void onAddHoatDong(CaNhan cn) {
+                        // Mở BottomHoatDongFragment
+                        BottomHoatDongFragment bottomHoatDong = new BottomHoatDongFragment();
+                        bottomHoatDong.show(getSupportFragmentManager(), "BottomHoatDong");
+                    }
+                });
                 bottomSheet.show(getSupportFragmentManager(), "BottomAction");
             }
 
@@ -70,7 +94,6 @@ public class DanhSachCaNhanActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     @Override
