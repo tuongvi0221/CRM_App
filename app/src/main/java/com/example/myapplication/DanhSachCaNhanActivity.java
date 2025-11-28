@@ -24,7 +24,7 @@ public class DanhSachCaNhanActivity extends AppCompatActivity {
     private ArrayList<CaNhan> caNhanList;
     private FloatingActionButton btnAdd;
 
-    private DBCRMHandler db;
+    private CaNhanRepository db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class DanhSachCaNhanActivity extends AppCompatActivity {
         btnAdd = findViewById(R.id.btn_add_contact);
 
         // --- Khởi tạo DB ---
-        db = new DBCRMHandler(this);
+        db = new CaNhanRepository(this);
 
         // --- Load dữ liệu từ database ---
         loadCaNhan();
