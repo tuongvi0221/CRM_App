@@ -16,7 +16,34 @@ public class CaNhanRepository {
         dbHandler = new DBCRMHandler(context);
     }
 
-    public void add(CaNhan cn) {
+//    public void add(CaNhan cn) {
+//        SQLiteDatabase db = dbHandler.getWritableDatabase();
+//        ContentValues values = new ContentValues();
+//
+//        values.put("HOTEN", cn.getHoVaTen());
+//        values.put("DANHXUNG", cn.getDanhXung());
+//        values.put("TEN", cn.getTen());
+//        values.put("CONGTY", cn.getCongTy());
+//        values.put("GIOITINH", cn.getGioiTinh());
+//        values.put("DIENTHOAI", cn.getDiDong());
+//        values.put("EMAIL", cn.getEmail());
+//        values.put("NGAYSINH", cn.getNgaySinh());
+//        values.put("NGAYTAO", cn.getNgayTao());
+//        values.put("DIACHI", cn.getDiaChi());
+//        values.put("QUANHUYEN", cn.getQuanHuyen());
+//        values.put("TINHTP", cn.getTinhTP());
+//        values.put("QUOCGIA", cn.getQuocGia());
+//        values.put("MOTA", cn.getMoTa());
+//        values.put("GHICHU", cn.getGhiChu());
+//        values.put("GIAOCHO", cn.getGiaoCho());
+//        values.put("CUOCGOI", cn.getSoCuocGoi());
+//        values.put("CUOCHOP", cn.getSoCuocHop());
+//
+//        db.insert("CONTACT", null, values);
+//        db.close();
+//    }
+
+    public long add(CaNhan cn) {
         SQLiteDatabase db = dbHandler.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -39,8 +66,9 @@ public class CaNhanRepository {
         values.put("CUOCGOI", cn.getSoCuocGoi());
         values.put("CUOCHOP", cn.getSoCuocHop());
 
-        db.insert("CONTACT", null, values);
+        long newId = db.insert("CONTACT", null, values);
         db.close();
+        return newId;
     }
 
     public List<CaNhan> getAllCaNhan() {

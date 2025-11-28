@@ -19,6 +19,9 @@ public class ThongTinNguoiLienHeFragment extends Fragment {
     private AutoCompleteTextView actDanhXung, actGioiTinh, actCongTy;
     private EditText edtHoVaTenDem, edtTen, edtDiDong, edtEmail, edtNgaySinh;
 
+    // Lưu model tạm để populate khi view đã sẵn sàng
+    private CaNhan caNhan;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -79,8 +82,39 @@ public class ThongTinNguoiLienHeFragment extends Fragment {
                 tvHeader.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down, 0);
             }
         });
+
+        // Nếu đã có CaNhan được set trước đó -> populate
+        if (caNhan != null) {
+            populateFromCaNhan();
+        }
     }
 
+    private void populateFromCaNhan() {
+        if (caNhan == null) return;
+        actDanhXung.setText(nullToEmpty(caNhan.getDanhXung()));
+        edtHoVaTenDem.setText(nullToEmpty(caNhan.getHoVaTen()));
+        edtTen.setText(nullToEmpty(caNhan.getTen()));
+        actCongTy.setText(nullToEmpty(caNhan.getCongTy()));
+        actGioiTinh.setText(nullToEmpty(caNhan.getGioiTinh()));
+        edtDiDong.setText(nullToEmpty(caNhan.getDiDong()));
+        edtEmail.setText(nullToEmpty(caNhan.getEmail()));
+        edtNgaySinh.setText(nullToEmpty(caNhan.getNgaySinh()));
+    }
+
+    private String nullToEmpty(String s) {
+        return s == null ? "" : s;
+    }
+
+    // Cho Activity truyền CaNhan vào để chỉnh sửa
+    public void setCaNhan(CaNhan cn) {
+        this.caNhan = cn;
+        // Nếu view đã sẵn sàng, populate luôn
+        if (getView() != null) {
+            populateFromCaNhan();
+        }
+    }
+
+    // GETTERS hiện tại (không đổi)
     public String getDanhXung() { return actDanhXung.getText().toString(); }
     public String getHoVaTenDem() { return edtHoVaTenDem.getText().toString(); }
     public String getTen() { return edtTen.getText().toString(); }
