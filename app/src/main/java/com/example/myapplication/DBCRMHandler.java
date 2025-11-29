@@ -158,12 +158,11 @@ public class DBCRMHandler extends SQLiteOpenHelper {
                 "THOIGIANBATDAU TEXT," +
                 "THOIGIANKETTHUC TEXT," +
                 "TINHTRANG TEXT," +
-                "KHACHHANG TEXT," +
                 "NHANVIEN INTEGER," +
-                "TOCHUC TEXT," +
+                "TOCHUC INTEGER," +
                 "NGUOILIENHE INTEGER," +
                 "LEAD INTEGER," +
-                "LIENQUANTOI TEXT," +
+                "COHOI INTEGER," +
                 "MOTA TEXT," +
                 "GIAOCHO INTEGER," +
                 "FOREIGN KEY(NHANVIEN) REFERENCES NHANVIEN(ID) ON DELETE SET NULL," +

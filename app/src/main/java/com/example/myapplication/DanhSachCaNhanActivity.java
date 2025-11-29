@@ -111,9 +111,9 @@ public class DanhSachCaNhanActivity extends AppCompatActivity {
 
                     @Override
                     public void onAddHoatDong(CaNhan cn) {
-                        // Mở BottomHoatDongFragment
-                        BottomHoatDongFragment bottomHoatDong = new BottomHoatDongFragment();
-                        bottomHoatDong.show(getSupportFragmentManager(), "BottomHoatDong");
+                        BottomHoatDongFragment bottom = new BottomHoatDongFragment();
+                        bottom.setCaNhan(cn);   // <<< gửi dữ liệu CaNhan
+                        bottom.show(getSupportFragmentManager(), "hoatdong");
                     }
                 });
                 bottomSheet.show(getSupportFragmentManager(), "BottomAction");
